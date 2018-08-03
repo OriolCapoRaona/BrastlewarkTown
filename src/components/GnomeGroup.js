@@ -49,7 +49,7 @@ export class GnomeGroup extends React.Component {
                 </div>
                 <h3 style={{marginLeft: "30px", marginTop: "30px"}}>Gnomes grouped by {that.props.groupedTitle}</h3>
                 <div className="GroupedGnomes">
-                    <div className="input-group">
+                    <div className="input-group nameFilter">
                         <input type="text" id="gnomeFilter" className="form-control" placeholder="Filter by name" aria-label="Username" aria-describedby="basic-addon1" />
                     </div>
                     {gnomes.map(function (gnome, index) {

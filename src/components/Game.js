@@ -83,12 +83,18 @@ export class Game extends React.Component {
 
         return (
             <div>
-                <div className="Header">
+                <nav class="navbar navbar-light bg-light">
+                    <a class="navbar-brand" href="#">
+                        <img src="https://www.shareicon.net/download/2016/08/02/805648_gnome.svg" width="30" height="30" class="d-inline-block align-top" alt="" />
+                        Brastlewark
+                    </a>
+                </nav>
+                {/* <div className="Header">
                     <div className="row">
                         <img className="Icon" src="https://www.shareicon.net/download/2016/08/02/805648_gnome.svg" />
                         <h1>Brastlewark Town</h1>
                     </div>
-                </div>
+                </div> */}
                 <div className="Body">
                     {
                         this.state.selectedGnomesTitle.length ?
@@ -97,6 +103,15 @@ export class Game extends React.Component {
                             :
                             <div className="FadeInEffect">
 
+                                <div class="jumbotron jumbotron-fluid">
+                                    <div class="container">
+                                        <h1 class="display-4">Welcome!</h1>
+                                        <p class="lead">You have arrived to Brastlewark</p>
+                                        <p>
+                                            In this town, the inhabitants are Gnomes. They live in peace: they go to work every day, and meet their friends and their couples. There are {this.state.gnomes.length} habitants, so it's quite difficult to identify quickly some members. In this simple React JS App, we'll give you an approach of their profiles, depending on some features.
+                                        </p>
+                                    </div>
+                                </div>
 
                                 <div className="GroupedSection">
                                     <h3>Gnomes grouped by profession (#gnomes)</h3>

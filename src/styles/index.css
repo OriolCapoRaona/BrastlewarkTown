@@ -2,8 +2,22 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body, html{
+    height: 100%;
+    margin: 0;
+}
+
 .mb-3, .my-3 {
     margin-bottom: 0!important;
+}
+
+.LogginBackground{
+    height: 100%;
+    background-image: url("https://www.worldanvil.com/uploads/images/fe4b3bd97e0aa2b4bc6b3684ef213886.jpg");
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .btnReturnHome {
@@ -12,7 +26,7 @@
     border: 1px solid rgba(0,0,0,.125);
 }
 
-.input-group{
+.nameFilter{
     margin-bottom: 50px !important;
 }
 
@@ -44,6 +58,9 @@
 .GroupedSection{
     width: 100%;
     margin-top: 20px;
+}
+#root{
+    height:100%;
 }
 
 .GroupedGnomes{
