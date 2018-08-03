@@ -1,0 +1,138 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.mb-3, .my-3 {
+    margin-bottom: 0!important;
+}
+
+.btnReturnHome {
+    margin-left: 30px;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,.125);
+}
+
+.input-group{
+    margin-bottom: 50px !important;
+}
+
+.Header{
+    width: 100%;
+    height: 100px;
+    background-color: darkgray;
+    
+    display:flex;
+    align-items: center;
+    justify-content: center;
+
+    position: relative;
+}
+
+.Header .Icon{
+    /* position: absolute; */
+    /* top: 50%; */
+    /* left: 0; */
+    width: 50px;
+    height: 50px;
+    /* line-height: 50%; */
+}
+
+.Body{
+    margin: 20px;
+}
+
+.GroupedSection{
+    width: 100%;
+    margin-top: 20px;
+}
+
+.GroupedGnomes{
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-around;
+    margin:30px;
+}
+
+.GnomeCard{
+    height: 300px;
+    max-width: 300px;
+    float: left;
+    margin: 5px;
+    /* border: 1px solid black; */
+    transition: 0.5s;
+}
+
+.GnomeCard:hover{
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+.GnomeCard .GnomeCard__Thumbnail {
+    /* width: 250px; */
+    /* max-height: 200px; */
+    height: 200px;
+    width: 100%;
+    object-fit: contain;
+}
+
+.FeatureBox {
+    width: 150px;
+    height: 100px;
+    text-align: center;
+    border: 1px solid #ccc;
+    float: left;
+    transition: 0.5s;
+    border-radius: 2px;
+    background-color: white;    
+    margin: 10px;
+
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.FeatureBox h5{
+    margin-top: 10px;
+}
+
+.FeatureBox:hover {
+    transform: scale(1.15);
+    cursor: pointer;
+    box-shadow: 10px 10px 2px 0 rgba(120,120,120,0.3);
+}
+
+.FadeInEffect{
+    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 2s; /* Firefox < 16 */
+    -ms-animation: fadein 2s; /* Internet Explorer */
+    -o-animation: fadein 2s; /* Opera < 12.1 */
+    animation: fadein 2s;
+}
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* Opera < 12.1 */
+@-o-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
