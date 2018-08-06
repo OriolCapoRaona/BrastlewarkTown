@@ -3,6 +3,8 @@ import './../styles/index.css';
 import { Gnome } from './Gnome';
 import { GnomeModal } from './GnomeModal';
 
+// This component represents a specific group of gnomes filtered by some feature.  
+// Here, you can filter gnomes by name, and see their details by clicking on them
 export class GnomeGroup extends React.Component {
 
     constructor(props) {
@@ -16,8 +18,8 @@ export class GnomeGroup extends React.Component {
     componentDidMount() {
         let that = this;
         let inputFilter = document.getElementById("gnomeFilter");
-        document.getElementById("gnomeFilter").onkeyup = function () {
-            let value = document.getElementById("gnomeFilter").value;
+        inputFilter.onkeyup = function () {
+            let value = inputFilter.value;
             that.setState({
                 filterValue: value
             })
@@ -30,13 +32,10 @@ export class GnomeGroup extends React.Component {
         });
     }
 
-    // ReturnHome = () => {
-    //     this.props.ReturnHome();
-    // }
-
     render() {
         let that = this;
         let gnomes = this.props.gnomes;
+        //Apply filter by name
         if (that.state.filterValue.length) {
             gnomes = gnomes.filter(function (gnome) {
                 return gnome.name.toLowerCase().indexOf(that.state.filterValue.toLowerCase()) > -1;

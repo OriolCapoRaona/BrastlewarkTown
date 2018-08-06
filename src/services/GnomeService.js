@@ -1,5 +1,6 @@
 import $ from 'jquery';
 
+// This service initializes all gnomes, and apply some filters
 export class GnomeService {
 
     constructor(){

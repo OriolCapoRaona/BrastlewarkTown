@@ -51,11 +51,29 @@ body, html{
 .btnReturnHome {
     margin-left: 30px;
     background-color: white;
-    border: 1px solid rgba(0,0,0,.125);
+    border: 1px solid rgba(0,0,0,.250);
+}
+
+.btnReturnHome.filter{
+    margin-left: 0px;
 }
 
 .nameFilter{
     margin-bottom: 50px !important;
+}
+
+.filterTools{
+    margin-left: 5px;
+    margin-right: 5px;
+    /* background-color: rgba(233, 236, 239, 0.58); */
+}
+
+.filterTools .tool{
+    margin: 5px;
+}
+
+.filterTools .tool.sortby .btnReturnHome.filter.active{
+    background-color: rgba(233, 236, 239, 0.8);
 }
 
 .Header{
@@ -71,12 +89,8 @@ body, html{
 }
 
 .Header .Icon{
-    /* position: absolute; */
-    /* top: 50%; */
-    /* left: 0; */
     width: 50px;
     height: 50px;
-    /* line-height: 50%; */
 }
 
 .Body{
@@ -109,10 +123,6 @@ body, html{
     flex-direction:row;
     flex-wrap:wrap;
     justify-content:space-around;
-}
-
-.GroupedSection:last-child{
-    justify-content:left;
 }
 
 #root{

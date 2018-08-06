@@ -3,6 +3,7 @@ import './../styles/index.css';
 import { Loggin } from './Loggin';
 import { HomePage } from './HomePage';
 
+// This components leads the Game, showing first the Log In screen, and then the HomePage
 export class Game extends React.Component {
 
     states = ['loggin', 'homepage']
@@ -23,7 +24,7 @@ export class Game extends React.Component {
     }
 
     render() {
-        console.log(this.state.phase)
+        let that = this;
         return (
             <div style={{ height: '100%' }}>
                 {
@@ -31,7 +32,7 @@ export class Game extends React.Component {
 
                         <Loggin LogIn={this.LogIn.bind(this)} />
                         :
-                        <HomePage />
+                        <HomePage username={that.state.username}/>
 
                 }
             </div>

@@ -1,11 +1,11 @@
 import React from 'react';
 import { GnomeService } from '../services/GnomeService';
-import { Object } from 'core-js';
 import { GnomeGroup } from './GnomeGroup';
-import { Gnome } from './Gnome';
 import { GnomeModal } from './GnomeModal';
 import {GnomesFilter} from './GnomesFilter';
 
+// This component shows the HomePage of the App, where you can see
+// the welcome and look for gnomes aplying some filters
 export class HomePage extends React.Component {
 
     constructor() {
@@ -15,52 +15,44 @@ export class HomePage extends React.Component {
             gnomes: [],
             gnomesByProfession: {},
             gnomesByAge: {},
-            gnomesByName: [],
             gnomesStartingByLetter: {},
-            selectedGnomeIndex: null,
             gnomeService: new GnomeService(),
             selectedGnome: null,
             selectedGnomes: [],
             selectedGnomesTitle: "",
         }
-
+        //Initialize all gnomes from the service, as obtain different grouped gnomes
         this.state.gnomeService.GetGnomes.then(function (gnomes) {
             that.setState({
                 gnomes: gnomes
             })
             let gnomesByProfession = that.state.gnomeService.groupGnomesByFeature("professions");
             let gnomesByAge = that.state.gnomeService.groupGnomesByFeature("age");
-            let gnomesByName = that.state.gnomeService.sortGnomesByName();
             let gnomesStartingByLetter = that.state.gnomeService.gnomesStartingByLetter();
             that.setState({
                 gnomesByProfession: gnomesByProfession,
                 gnomesByAge: gnomesByAge,
-                gnomesByName: gnomesByName,
                 gnomesStartingByLetter: gnomesStartingByLetter,
             })
         });
-
     }
 
-    handleClick = (selectedGnomeIndex) => {
-        this.setState({
-            selectedGnomeIndex: selectedGnomeIndex
-        });
-    }
-
+    //Selects the gnome to show in the modal/popup
     SelectGnome = (selectedGnome) => {
         this.setState({
             selectedGnome: selectedGnome
         });
     }
 
-    selectGnomeGroup = (gnomes, filterTitle) => {
+    //Selects the gnome group that will be shown in the GnomeGroup component
+    SelectGnomeGroup = (gnomes, filterTitle) => {
         this.setState({
             selectedGnomes: gnomes,
             selectedGnomesTitle: filterTitle
         })
     }
 
+    //Function passed to component GnomeGroup to return back to the HomePage
     ReturnHome = () => {
         this.setState({
             selectedGnomesTitle: '',
@@ -69,6 +61,8 @@ export class HomePage extends React.Component {
 
     render() {
         let that = this;
+
+        //Sort gnomes by age range
         let gnomesByAgeKeys = Object.keys(this.state.gnomesByAge);
         gnomesByAgeKeys.sort(function (a, b) {
             if (a < b) return -1;
@@ -79,10 +73,10 @@ export class HomePage extends React.Component {
         for (var i = 0; i < gnomesByAgeKeys.length; i++) {
             let age = gnomesByAgeKeys[i];
             let selectedGroup = "";
-            if (age < 100) selectedGroup = 'babies';//ageGroups['babies'] = ageGroups['babies'].concat(this.state.gnomesByAge[age]);//+= this.state.gnomesByAge[age].length;
-            else if (age >= 100 && age < 200) selectedGroup = 'youngs';//ageGroups['youngs'] += this.state.gnomesByAge[age].length;
-            else if (age >= 200 && age < 300) selectedGroup = 'adults';//ageGroups['adults'] += this.state.gnomesByAge[age].length;
-            else if (age >= 300) selectedGroup = 'elder';//ageGroups['elder'] += this.state.gnomesByAge[age].length;
+            if (age < 100) selectedGroup = 'babies';
+            else if (age >= 100 && age < 200) selectedGroup = 'youngs';
+            else if (age >= 200 && age < 300) selectedGroup = 'adults';
+            else if (age >= 300) selectedGroup = 'elder';
             ageGroups[selectedGroup] = ageGroups[selectedGroup].concat(this.state.gnomesByAge[age]);
         }
 
@@ -91,10 +85,10 @@ export class HomePage extends React.Component {
         return (
             <div className="Body">
                 <nav className="navbar navbar-light bg-light">
-                    <a className="navbar-brand" href="#">
+                    <span className="navbar-brand">
                         <img src="https://www.shareicon.net/download/2016/08/02/805648_gnome.svg" width="30" height="30" className="d-inline-block align-top" alt="" />
-                        Brastlewark
-                    </a>
+                        Brastlewark - {that.props.username}
+                    </span>
                 </nav>
                 <div className="Body__Spacing">
                     {
@@ -107,7 +101,7 @@ export class HomePage extends React.Component {
 
                                     <div className="jumbotron jumbotron-fluid" style={{ 'backgroundColor': '#e9ecef6e' }}>
                                         <div className="container">
-                                            <h1 className="display-4">Welcome!</h1>
+                                            <h1 className="display-4">Welcome, {this.props.username}!</h1>
                                             <p className="lead">You have arrived to Brastlewark town</p>
                                             <p>
                                                 In this town, the inhabitants are Gnomes. They live in peace: they go to work every day, and meet their friends and their couples. There are {this.state.gnomes.length} habitants, so it's quite difficult to identify quickly some members. In this simple React JS App, we'll give you an approach of their profiles, depending on some features.
@@ -131,7 +125,7 @@ export class HomePage extends React.Component {
                                                         <div className="GroupedSection">
                                                             {Object.keys(this.state.gnomesByProfession).map(function (prop, index) {
                                                                 return (
-                                                                    <div key={index} className="FeatureBox" onClick={() => that.selectGnomeGroup(that.state.gnomesByProfession[prop], "profession: " + prop)}>
+                                                                    <div key={index} className="FeatureBox" onClick={() => that.SelectGnomeGroup(that.state.gnomesByProfession[prop], "profession: " + prop)}>
                                                                         <h5>{prop}</h5>
                                                                         <p>{that.state.gnomesByProfession[prop].length}</p>
                                                                     </div>
@@ -157,7 +151,7 @@ export class HomePage extends React.Component {
                                                         <div className="GroupedSection">
                                                             {Object.keys(ageGroups).map(function (prop, index) {
                                                                 return (
-                                                                    <div key={index} className="FeatureBox" onClick={() => that.selectGnomeGroup(ageGroups[prop], "age: " + prop)}>
+                                                                    <div key={index} className="FeatureBox" onClick={() => that.SelectGnomeGroup(ageGroups[prop], "age: " + prop)}>
                                                                         <h5>{prop}</h5>
                                                                         <p>{ageGroups[prop].length}</p>
                                                                     </div>
@@ -166,43 +160,6 @@ export class HomePage extends React.Component {
                                                             <div style={{ clear: "both" }}></div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="card">
-                                            <div className="card-header" id="headingThree">
-                                                <h5 className="mb-0">
-                                                    <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
-                                                        <h3>All</h3>
-                                                    </button>
-                                                </h5>
-                                            </div>
-
-                                            <div id="collapseThree" className="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                                <div className="card-body">
-                                                    {this.state.gnomes.map(function (gnome_, index) {
-                                                        return (
-                                                            <Gnome key={index} key1={index} gnome={gnome_} SelectGnome={that.SelectGnome.bind(this)} />
-                                                        )
-                                                    })}
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div className="card">
-                                            <div className="card-header" id="headingFour">
-                                                <h5 className="mb-0">
-                                                    <button className="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                                                        <h3>Gnomes sorted alphabetically</h3>
-                                                    </button>
-                                                </h5>
-                                            </div>
-                                            <div id="collapseFour" className="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
-                                                <div className="card-body">
-                                                    {this.state.gnomesByName.map(function (gnome_, index) {
-                                                        return (
-                                                            <Gnome key={index} key1={index} gnome={gnome_} SelectGnome={that.SelectGnome.bind(this)} />
-                                                        )
-                                                    })}
                                                 </div>
                                             </div>
                                         </div>
@@ -220,7 +177,7 @@ export class HomePage extends React.Component {
                                                         <div className="GroupedSection">
                                                             {Object.keys(that.state.gnomesStartingByLetter).map(function (prop, index) {
                                                                 return (
-                                                                    <div key={index} className="FeatureBox" onClick={() => that.selectGnomeGroup(that.state.gnomesStartingByLetter[prop], "age: " + prop)}>
+                                                                    <div key={index} className="FeatureBox" onClick={() => that.SelectGnomeGroup(that.state.gnomesStartingByLetter[prop], "age: " + prop)}>
                                                                         <h5>{prop}</h5>
                                                                         <p>{that.state.gnomesStartingByLetter[prop].length}</p>
                                                                     </div>
@@ -251,7 +208,6 @@ export class HomePage extends React.Component {
                                     </div>
                                 </div>
                                 <div style={{ clear: 'both' }}></div>
-
                                 <GnomeModal gnome={that.state.selectedGnome} />
                             </div>
                     }

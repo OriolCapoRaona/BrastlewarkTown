@@ -1,7 +1,10 @@
 import React from 'react';
 import './../styles/index.css';
-import $ from 'jquery';
 
+// This component shows the log in page.
+// It just have 2 inputs, and when they are filled in,
+// and when clicking on Log in button, navigates
+// to the Home Page
 export class Loggin extends React.Component {
 
     constructor(props) {
@@ -11,7 +14,7 @@ export class Loggin extends React.Component {
         }
     }
 
-    logIn = () => {
+    LogIn = () => {
         let that = this;
         let username = document.getElementById("usernameInput");
         let password = document.getElementById("passwordInput");
@@ -21,7 +24,7 @@ export class Loggin extends React.Component {
             setTimeout(function(){
                 state = "";
                 that.props.LogIn(username.value);
-            }, 200);
+            }, 1500);
         } else {
             state = "Username or password incorrect. Please, try again";
         }
@@ -54,7 +57,7 @@ export class Loggin extends React.Component {
                             </div>
                             <input id="passwordInput" type="password" className="form-control" placeholder="Password" aria-label="Username" aria-describedby="basic-addon2" />
                         </div>
-                        <button type="button" className="btn btn-outline-warning btn-lg btn-block" onClick={this.logIn}>Sign in</button>
+                        <button type="button" className="btn btn-outline-warning btn-lg btn-block" onClick={this.LogIn}>Sign in</button>
                         <p className="text-danger" style={{ marginTop: "20px" }}>{this.state.errorMessage}</p>
                     </div>
                 </div>
