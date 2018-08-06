@@ -3,9 +3,27 @@ import './../styles/index.css';
 
 export class GnomeModal extends React.Component {
 
+    constructor(props) {
+        super(props);
+        if (this.props.gnome === null) {
+            this.state = {
+                gnome : {
+                    name: '',
+                    thumbnail: '',
+                    age: -1,
+                    height: -1,
+                    weight: -1,
+                    professions: [],
+                    friends: []
+                }
+            }
+        }
+    }
+
+
     render() {
-        let gnome = this.props.gnome;
-        console.log(gnome);
+        let gnome = this.props.gnome !== null ? this.props.gnome : this.state.gnome;
+
         return (
             <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
@@ -20,12 +38,12 @@ export class GnomeModal extends React.Component {
                                 {/* <p>Hair color: <span className="attribute"></span></p> */}
                                 <p>Professions:
                                     {gnome.professions.map(function (profession, index) {
-                                        return <span> {profession}{index < gnome.professions.length-1 && <span>,</span>}</span>
+                                        return <span key={index}> {profession}{index < gnome.professions.length - 1 && <span>,</span>}</span>
                                     })}
                                 </p>
                                 <p>Friends:
                                     {gnome.friends.map(function (friend, index) {
-                                        return <span> {friend}{index < gnome.friends.length-1 && <span>,</span>}</span>
+                                        return <span key={index}> {friend}{index < gnome.friends.length - 1 && <span>,</span>}</span>
                                     })}
                                 </p>
                             </div>

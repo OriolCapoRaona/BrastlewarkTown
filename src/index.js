@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './styles/index.css';
-import {Loggin} from './components/Loggin';
+import {Game} from './components/Game';
 
 
 
 // ========================================
 
 ReactDOM.render(
-    <Loggin />,
+    <Game />,
     document.getElementById('root')
   ); 

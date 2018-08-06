@@ -38,4 +38,25 @@ export class GnomeService {
         // console.log(groupedGnomes);
         return groupedGnomes;
     }
+
+    sortGnomesByName(){
+        let sortedGnomes = this.gnomes.sort(function(gnome1, gnome2){
+            if(gnome1.name < gnome2.name) return -1;
+            else if(gnome1.name === gnome2.name) return 0;
+            else return 1;
+        })
+        return sortedGnomes;
+    }
+
+    gnomesStartingByLetter(){
+        let groupedGnomes = {};
+        this.gnomes.forEach(function(gnome){
+            if(!groupedGnomes.hasOwnProperty(gnome.name[0].toLocaleUpperCase())){
+                groupedGnomes[gnome.name[0].toLocaleUpperCase()] = [gnome];
+            } else {
+                groupedGnomes[gnome.name[0].toLocaleUpperCase()].push(gnome);
+            }
+        })
+        return groupedGnomes;
+    }
 }

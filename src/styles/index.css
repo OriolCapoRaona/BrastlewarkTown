@@ -5,6 +5,7 @@
 body, html{
     height: 100%;
     margin: 0;
+    color: black;
 }
 
 .mb-3, .my-3 {
@@ -18,6 +19,33 @@ body, html{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
+}
+
+.mynavbar{
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.CenteredLoggin{
+    height: 100%;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.LogginZone{
+    width: 25%;
+    background: white;
+    padding: 30px 30px 35px 30px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.LogginZone .input-group.mb-3{
+    padding-bottom: 10px;
 }
 
 .btnReturnHome {
@@ -52,13 +80,41 @@ body, html{
 }
 
 .Body{
-    margin: 20px;
+    /* height: 100%; */
+    min-height: 100%;
+    width: 100%;
+    background-image: url("https://www.worldanvil.com/uploads/images/fe4b3bd97e0aa2b4bc6b3684ef213886.jpg");
+
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.Body__Spacing {
+    margin: 50px 20px 0 20px;
+    /* margin-top: 57px; */
+}
+
+.GroupedSectionContainer{
+    background-color: rgba(233, 236, 239, 0.58);
+    margin-top: 30px;
 }
 
 .GroupedSection{
     width: 100%;
     margin-top: 20px;
+
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-around;
 }
+
+.GroupedSection:last-child{
+    justify-content:left;
+}
+
 #root{
     height:100%;
 }
@@ -118,11 +174,11 @@ body, html{
 }
 
 .FadeInEffect{
-    -webkit-animation: fadein 2s; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: fadein 2s; /* Firefox < 16 */
-    -ms-animation: fadein 2s; /* Internet Explorer */
-    -o-animation: fadein 2s; /* Opera < 12.1 */
-    animation: fadein 2s;
+    -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 1s; /* Firefox < 16 */
+    -ms-animation: fadein 1s; /* Internet Explorer */
+    -o-animation: fadein 1s; /* Opera < 12.1 */
+    animation: fadein 1s;
 }
 
 @keyframes fadein {
@@ -152,4 +208,49 @@ body, html{
 @-o-keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
+}
+
+.FadeOutEffect {
+    -webkit-animation: fadeout 1s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadeout 1s; /* Firefox < 16 */
+    -ms-animation: fadeout 1s; /* Internet Explorer */
+    -o-animation: fadeout 1s; /* Opera < 12.1 */
+    animation: fadeout 1s;
+}
+
+@keyframes fadeout {
+    0% { opacity: 1; }
+    100%   { opacity: 0; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadeout {
+    0% { opacity: 1; }
+    100%   { opacity: 0; }
+}
+
+.fa-spinner{
+    display: none;
+}
+
+.accordion h3{
+    color: black;
+    text-decoration-color: black;
+}
+
+.btn-link  {
+    color: black !important;
+}
+
+.card-header {
+    background-color: rgba(233, 236, 239, 0.58) !important;   
+}
+
+.card {
+    background-color: rgba(233, 236, 239, 0.58) !important;   
+    border: 0px !important; 
+}
+
+.form-check{
+    padding-left: 2.25rem !important;
 }
